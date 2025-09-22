@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RK DRAGON PANIPURI - Loyalty Card System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <h1 class="brand-title">🐉 RK DRAGON PANIPURI 🐉</h1>
+            <div class="header-actions">
+                <button class="btn btn--primary" id="adminLoginBtn">Admin Login</button>
+                <button class="btn btn--secondary hidden" id="adminLogoutBtn">Logout</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Welcome Screen -->
+            <div id="welcomeScreen" class="welcome-screen">
+                <div class="welcome-card card">
+                    <div class="card__body">
+                        <h2>Welcome to RK Dragon Panipuri Loyalty Program</h2>
+                        <p>Collect 6 dragon stamps and get exciting rewards!</p>
+                        <div class="dragon-showcase">
+                            🐲 → 🐉 → 🏆
+                        </div>
+                        <p>Please login as admin to manage customer loyalty cards.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Admin Dashboard -->
+            <div id="adminDashboard" class="admin-dashboard hidden">
+                <div class="dashboard-header">
+                    <h2>Admin Dashboard</h2>
+                    <div class="dashboard-stats">
+                        <div class="stat-card">
+                            <span class="stat-number" id="totalCustomers">0</span>
+                            <span class="stat-label">Total Customers</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-number" id="activeCards">0</span>
+                            <span class="stat-label">Active Cards</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-number" id="completedCards">0</span>
+                            <span class="stat-label">Completed Cards</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="action-buttons">
+                    <button class="btn btn--primary" id="registerCustomerBtn">Register New Customer</button>
+                    <button class="btn btn--secondary" id="verifyCustomerBtn">Verify Customer ID</button>
+                    <button class="btn btn--outline" id="searchCustomerBtn">Search by Mobile</button>
+                </div>
+
+                <!-- Customer Registration Form -->
+                <div id="customerRegistration" class="section-card card hidden">
+                    <div class="card__body">
+                        <h3>Register New Customer</h3>
+                        <form id="customerForm">
+                            <div class="form-group">
+                                <label class="form-label">Customer Name</label>
+                                <input type="text" class="form-control" id="customerName" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Mobile Number</label>
+                                <input type="tel" class="form-control" id="customerMobile" pattern="[0-9]{10}" required>
+                            </div>
+                            <button type="submit" class="btn btn--primary">Register Customer</button>
+                            <button type="button" class="btn btn--outline" id="cancelRegistration">Cancel</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Customer Verification -->
+                <div id="customerVerification" class="section-card card hidden">
+                    <div class="card__body">
+                        <h3>Verify Customer ID</h3>
+                        <div class="form-group">
+                            <label class="form-label">Customer ID</label>
+                            <input type="text" class="form-control" id="verifyCustomerId" placeholder="Enter Customer ID (e.g., RK-123456)">
+                        </div>
+                        <button class="btn btn--primary" id="verifyIdBtn">Verify Customer</button>
+                        <button type="button" class="btn btn--outline" id="cancelVerification">Cancel</button>
+                    </div>
+                </div>
+
+                <!-- Customer Search -->
+                <div id="customerSearch" class="section-card card hidden">
+                    <div class="card__body">
+                        <h3>Search Customer by Mobile</h3>
+                        <div class="form-group">
+                            <label class="form-label">Mobile Number</label>
+                            <input type="tel" class="form-control" id="searchMobile" placeholder="Enter mobile number">
+                        </div>
+                        <button class="btn btn--primary" id="searchMobileBtn">Search Customer</button>
+                        <button type="button" class="btn btn--outline" id="cancelSearch">Cancel</button>
+                    </div>
+                </div>
+
+                <!-- Customer Details & Loyalty Card -->
+                <div id="customerDetails" class="section-card card hidden">
+                    <div class="card__body">
+                        <div class="customer-info">
+                            <h3>Customer Information</h3>
+                            <div class="customer-data">
+                                <p><strong>Name:</strong> <span id="detailName"></span></p>
+                                <p><strong>ID:</strong> <span id="detailId"></span></p>
+                                <p><strong>Mobile:</strong> <span id="detailMobile"></span></p>
+                                <p><strong>Registration Date:</strong> <span id="detailDate"></span></p>
+                            </div>
+                        </div>
+
+                        <!-- Loyalty Card Grid -->
+                        <div class="loyalty-card">
+                            <h4>Loyalty Progress</h4>
+                            <div class="progress-info">
+                                <span>Progress: <span id="progressText">0/6</span></span>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" id="progressFill"></div>
+                                </div>
+                            </div>
+                            <div class="stamp-grid">
+                                <div class="stamp-box" data-day="1">
+                                    <div class="stamp-content">
+                                        <span class="stamp-icon">🐲</span>
+                                        <span class="day-number">Day 1</span>
+                                    </div>
+                                </div>
+                                <div class="stamp-box" data-day="2">
+                                    <div class="stamp-content">
+                                        <span class="stamp-icon">🐲</span>
+                                        <span class="day-number">Day 2</span>
+                                    </div>
+                                </div>
+                                <div class="stamp-box" data-day="3">
+                                    <div class="stamp-content">
+                                        <span class="stamp-icon">🐲</span>
+                                        <span class="day-number">Day 3</span>
+                                    </div>
+                                </div>
+                                <div class="stamp-box" data-day="4">
+                                    <div class="stamp-content">
+                                        <span class="stamp-icon">🐲</span>
+                                        <span class="day-number">Day 4</span>
+                                    </div>
+                                </div>
+                                <div class="stamp-box" data-day="5">
+                                    <div class="stamp-content">
+                                        <span class="stamp-icon">🐲</span>
+                                        <span class="day-number">Day 5</span>
+                                    </div>
+                                </div>
+                                <div class="stamp-box" data-day="6">
+                                    <div class="stamp-content">
+                                        <span class="stamp-icon">🐲</span>
+                                        <span class="day-number">Day 6</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="loyalty-actions">
+                                <button class="btn btn--primary" id="addStampBtn">Add Stamp</button>
+                                <button class="btn btn--outline" id="printIdBtn">Print ID Card</button>
+                                <button class="btn btn--secondary" id="backToDashboard">Back to Dashboard</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- All Customers List -->
+                <div class="all-customers">
+                    <h3>All Registered Customers</h3>
+                    <div id="customersList" class="customers-list"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Admin Login Modal -->
+    <div id="loginModal" class="modal hidden">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Admin Login</h3>
+                <button class="modal-close" id="closeModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label class="form-label">Admin Mobile Number</label>
+                        <input type="tel" class="form-control" id="adminMobile" required>
+                    </div>
+                    <div class="form-group" id="otpGroup" style="display: none;">
+                        <label class="form-label">Enter OTP</label>
+                        <input type="text" class="form-control" id="otpInput" maxlength="4">
+                        <small>Demo OTP: 1234</small>
+                    </div>
+                    <div class="login-actions">
+                        <button type="button" class="btn btn--primary" id="sendOtpBtn">Send OTP</button>
+                        <button type="button" class="btn btn--primary hidden" id="verifyOtpBtn">Verify OTP</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success/Error Messages -->
+    <div id="messageContainer" class="message-container hidden">
+        <div class="message" id="messageContent"></div>
+    </div>
+
+    <!-- Completion Modal -->
+    <div id="completionModal" class="modal hidden">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>🏆 Congratulations! 🏆</h3>
+                <button class="modal-close" id="closeCompletionModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="completion-content">
+                    <div class="trophy-animation">🐉 🏆 🐉</div>
+                    <h4 id="completionMessage">Customer has completed their loyalty card!</h4>
+                    <p>Your customer has earned a special reward!</p>
+                    <div class="reward-voucher">
+                        <h5>🎁 REWARD VOUCHER 🎁</h5>
+                        <p>Get 1 FREE Panipuri Set</p>
+                        <p>Valid until: <span id="voucherExpiry"></span></p>
+                    </div>
+                    <button class="btn btn--primary" id="printVoucherBtn">Print Voucher</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Print ID Card Modal -->
+    <div id="printModal" class="modal hidden">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Customer ID Card</h3>
+                <button class="modal-close" id="closePrintModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="id-card" id="idCardContent">
+                    <div class="id-card-header">
+                        <h4>🐉 RK DRAGON PANIPURI 🐉</h4>
+                        <p>Loyalty Card</p>
+                    </div>
+                    <div class="id-card-body">
+                        <p><strong>Name:</strong> <span id="printName"></span></p>
+                        <p><strong>ID:</strong> <span id="printId"></span></p>
+                        <p><strong>Mobile:</strong> <span id="printMobile"></span></p>
+                        <p><strong>Valid From:</strong> <span id="printDate"></span></p>
+                        <div class="id-card-footer">
+                            <small>Present this card to collect stamps</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="print-actions">
+                    <button class="btn btn--primary" onclick="window.print()">Print Card</button>
+                    <button class="btn btn--secondary" id="downloadCard">Download as Image</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
