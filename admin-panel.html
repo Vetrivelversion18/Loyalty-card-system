@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>RK DRAGON PANIPURI - Admin Panel</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <h1>RK DRAGON PANIPURI - Admin Panel</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="#" id="logoutBtn">Logout</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="admin-customers">
+      <h2>Customer Details</h2>
+      <button id="exportCsvBtn">Export Customers CSV</button>
+      <input type="file" id="importCsvInput" accept=".csv" />
+      <table id="customersTable" border="1" cellpadding="5" cellspacing="0" style="margin-top:1rem; width:100%; max-width: 900px;">
+        <thead>
+          <tr>
+            <th>Customer ID</th>
+            <th>Name</th>
+            <th>Mobile Number</th>
+            <th>Stamps</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Customers will be dynamically loaded here -->
+        </tbody>
+      </table>
+      <div id="adminMessage" class="result-message"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2024 RK DRAGON PANIPURI</p>
+  </footer>
+
+  <script src="admin-panel.js"></script>
+</body>
+</html>

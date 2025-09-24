@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>RK DRAGON PANIPURI - Loyalty Card</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <h1>RK DRAGON PANIPURI</h1>
+    <nav>
+      <a href="login.html">Admin Login</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="customer-registration">
+      <h2>Register New Customer</h2>
+      <form id="registerCustomerForm">
+        <label for="customerName">Customer Name:</label>
+        <input type="text" id="customerName" name="customerName" required />
+
+        <label for="customerMobile">Mobile Number:</label>
+        <input type="tel" id="customerMobile" name="customerMobile" pattern="[0-9]{10}" placeholder="10-digit mobile number" required />
+
+        <button type="submit">Register Customer</button>
+      </form>
+      <div id="registerResult" class="result-message"></div>
+    </section>
+
+    <section class="customer-stamp">
+      <h2>Stamp Customer Purchase</h2>
+      <form id="stampForm">
+        <label for="stampMobile">Enter Customer Mobile Number:</label>
+        <input type="tel" id="stampMobile" name="stampMobile" pattern="[0-9]{10}" placeholder="10-digit mobile number" required />
+        <button type="submit">Stamp Purchase</button>
+      </form>
+      <div id="stampResult" class="result-message"></div>
+      <div id="stampCard" class="stamp-card"></div>
+    </section>
+
+    <section class="retrieve-id">
+      <h2>Retrieve Customer ID Card</h2>
+      <form id="retrieveIdForm">
+        <label for="retrieveMobile">Enter Mobile Number:</label>
+        <input type="tel" id="retrieveMobile" name="retrieveMobile" pattern="[0-9]{10}" placeholder="10-digit mobile number" required />
+        <button type="submit">Retrieve ID Card</button>
+      </form>
+      <div id="retrieveResult" class="result-message"></div>
+      <canvas id="idCardCanvas" width="350" height="200" style="display:none;"></canvas>
+      <button id="downloadIdCardBtn" style="display:none;">Download ID Card</button>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2024 RK DRAGON PANIPURI</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
